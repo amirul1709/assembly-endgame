@@ -41,7 +41,6 @@ header>p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 350px;
   gap: 5px;
 }
 
