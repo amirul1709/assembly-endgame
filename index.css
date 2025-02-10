@@ -50,3 +50,20 @@ header>p {
   border: none;
   text-align: center;
 }
+
+.word-container {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.word-container>span {
+  height: 40px;
+  width: 35px;
+  font-size: 1.8rem;
+  color: white;
+  background-color: gray;
+  border-bottom: 2px solid white;
+  text-align: center;
+}
