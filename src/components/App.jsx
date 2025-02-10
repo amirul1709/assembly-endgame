@@ -1,6 +1,17 @@
 import { useState } from "react";
+import { languages } from "../languages";
+import Chip from "./Chip";
 
 function App() {
+  const chips = languages.map((lang) => (
+    <Chip
+      key={lang.name}
+      lang={lang.name}
+      backgroundColor={lang.backgroundColor}
+      color={lang.color}
+    />
+  ));
+
   return (
     <main>
       <header>
@@ -14,6 +25,7 @@ function App() {
         <h3>You win!</h3>
         <p>Well done! 🎉</p>
       </section>
+      <section className="chips-container">{chips}</section>
     </main>
   );
 }
