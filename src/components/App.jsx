@@ -10,6 +10,10 @@ function App() {
           from Assembly!
         </p>
       </header>
+      <section className="status">
+        <h3>You win!</h3>
+        <p>Well done! 🎉</p>
+      </section>
     </main>
   );
 }
