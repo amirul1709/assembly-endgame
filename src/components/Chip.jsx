@@ -1,9 +1,9 @@
 export default function Chip(props) {
   return (
-    <button
+    <span
       style={{ color: props.color, backgroundColor: props.backgroundColor }}
     >
       {props.lang}
-    </button>
+    </span>
   );
 }

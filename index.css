@@ -39,12 +39,14 @@ header>p {
 
 .chips-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 350px;
+  gap: 5px;
 }
 
-.chips-container>button {
-  height: 50px;
-  margin: 5px;
-  padding: 10px;
+.chips-container>span {
+  padding: 4px;
   border-radius: 4px;
   border: none;
   text-align: center;
