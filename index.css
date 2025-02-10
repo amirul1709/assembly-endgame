@@ -37,14 +37,14 @@ header>p {
   margin: 0px;
 }
 
-.chips-container {
+.lang-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
 }
 
-.chips-container>span {
+.lang-container>span {
   padding: 4px;
   border-radius: 4px;
   border: none;

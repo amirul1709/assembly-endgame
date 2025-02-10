@@ -27,7 +27,7 @@ function App() {
         <h3>You win!</h3>
         <p>Well done! 🎉</p>
       </section>
-      <section className="chips-container">{chips}</section>
+      <section className="lang-container">{chips}</section>
     </main>
   );
 }
