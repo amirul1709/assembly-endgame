@@ -21,7 +21,9 @@ function App() {
   //creating an array of uppercase letters
   const wordArray = curruntWord.toUpperCase().split("");
 
-  const letters = wordArray.map((letter) => <span>{letter}</span>);
+  const letters = wordArray.map((letter) => (
+    <span key={wordArray.indexOf(letter)}>{letter}</span>
+  ));
 
   return (
     <main>
