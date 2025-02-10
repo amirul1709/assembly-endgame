@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { languages } from "../languages";
-import Chip from "./Chip";
 
 function App() {
   const chips = languages.map((lang) => (
-    <Chip
+    <span
       key={lang.name}
-      lang={lang.name}
-      backgroundColor={lang.backgroundColor}
-      color={lang.color}
-    />
+      style={{
+        backgroundColor: lang.backgroundColor,
+        color: lang.color,
+      }}
+    >
+      {lang.name}
+    </span>
   ));
 
   return (
