@@ -35,6 +35,7 @@ export default function App() {
   //creating an array of uppercase letters
   const alphabetArray = alphabet.toUpperCase().split("");
 
+  //guess state update user guesses
   function handleClick(button) {
     setGuessedLetters((prevGuess) =>
       prevGuess.includes(button) ? prevGuess : [...prevGuess, button]
