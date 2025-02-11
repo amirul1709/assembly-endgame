@@ -2,6 +2,12 @@ import { useState } from "react";
 import { languages } from "../languages";
 
 export default function App() {
+  //initializing state for user's guessed letters
+  const [guessedLetters, setGuessedLetters] = useState([]);
+
+  //initializing state for random word
+  const [curruntWord, setCurrentWord] = useState("react");
+
   //adding languages to the page
   const chips = languages.map((lang) => (
     <span
@@ -14,9 +20,6 @@ export default function App() {
       {lang.name}
     </span>
   ));
-
-  //initializing state for random word
-  const [curruntWord, setCurrentWord] = useState("react");
 
   //creating an array of uppercase letters
   const wordArray = curruntWord.toUpperCase().split("");
@@ -32,9 +35,17 @@ export default function App() {
   //creating an array of uppercase letters
   const alphabetArray = alphabet.toUpperCase().split("");
 
+  function handleClick(button) {
+    setGuessedLetters((prevGuess) =>
+      prevGuess.includes(button) ? prevGuess : [...prevGuess, button]
+    );
+  }
+
   //displaying each key for our keyboard
   const keys = alphabetArray.map((button) => (
-    <button key={button}>{button}</button>
+    <button key={button} onClick={() => handleClick(button)}>
+      {button}
+    </button>
   ));
 
   return (
