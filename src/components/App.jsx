@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { languages } from "../languages";
+import clsx from "clsx";
 
 export default function App() {
   //initializing state for user's guessed letters
@@ -43,11 +44,26 @@ export default function App() {
   }
 
   //displaying each key for our keyboard
-  const keys = alphabetArray.map((button) => (
-    <button key={button} onClick={() => handleClick(button)}>
-      {button}
-    </button>
-  ));
+  const keys = alphabetArray.map((button) => {
+    const isGuessed = guessedLetters.includes(button);
+    const isCorrect = isGuessed && wordArray.includes(button);
+    const isWrong = isGuessed && !wordArray.includes(button);
+
+    const className = clsx({
+      correct: isCorrect,
+      wrong: isWrong,
+    });
+
+    return (
+      <button
+        key={button}
+        onClick={() => handleClick(button)}
+        className={className}
+      >
+        {button}
+      </button>
+    );
+  });
 
   return (
     <main>
