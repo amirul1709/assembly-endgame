@@ -26,9 +26,12 @@ export default function App() {
   const wordArray = curruntWord.toUpperCase().split("");
 
   //displaying each letter in the word
-  const letters = wordArray.map((letter, index) => (
-    <span key={index}>{letter}</span>
-  ));
+  const letters = wordArray.map((letter, index) => {
+    const isGuessed = guessedLetters.includes(letter);
+    const isCorrect = isGuessed && wordArray.includes(letter);
+
+    return <span key={index}>{isCorrect ? letter : ""}</span>;
+  });
 
   //create a string of letters in the alphabet
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
