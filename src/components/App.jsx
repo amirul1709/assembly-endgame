@@ -19,9 +19,11 @@ export default function App() {
   const chips = languages.map((lang, index) => {
     const isLost = index < wrongGuessCount;
 
+    const className = clsx("chip", isLost && "lost");
+
     return (
       <span
-        className={`chip ${isLost ? "lost" : ""}`}
+        className={className}
         key={lang.name}
         style={{
           backgroundColor: lang.backgroundColor,
