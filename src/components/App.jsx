@@ -16,17 +16,22 @@ export default function App() {
   ).length;
 
   //adding languages to the page
-  const chips = languages.map((lang) => (
-    <span
-      key={lang.name}
-      style={{
-        backgroundColor: lang.backgroundColor,
-        color: lang.color,
-      }}
-    >
-      {lang.name}
-    </span>
-  ));
+  const chips = languages.map((lang, index) => {
+    const isLost = index < wrongGuessCount;
+
+    return (
+      <span
+        className={`chip ${isLost ? "lost" : ""}`}
+        key={lang.name}
+        style={{
+          backgroundColor: lang.backgroundColor,
+          color: lang.color,
+        }}
+      >
+        {lang.name}
+      </span>
+    );
+  });
 
   //creating an array of uppercase letters
   const wordArray = currentWord.split("");
