@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { languages } from "../languages";
 import clsx from "clsx";
+import { generate } from "random-words";
 
 export default function App() {
   //initializing state for user's guessed letters
