@@ -15,10 +15,14 @@ export default function App() {
     (letter) => !currentWord.includes(letter)
   ).length;
 
+  //checking if game is over
+  const isGameOver =
+    currentWord.split("").every((letter) => guessedLetters.includes(letter)) ||
+    wrongGuessCount >= languages.length - 1;
+
   //adding languages to the page
   const chips = languages.map((lang, index) => {
     const isLost = index < wrongGuessCount;
-
     const className = clsx("chip", isLost && "lost");
 
     return (
@@ -96,9 +100,11 @@ export default function App() {
       <section className="lang-container">{chips}</section>
       <section className="word-container">{letters}</section>
       <section className="keyboard-container">{keys}</section>
-      <div className="ng-button-container">
-        <button>New Game</button>
-      </div>
+      {isGameOver ? (
+        <section className="ng-button-container">
+          <button>New Game</button>
+        </section>
+      ) : null}
     </main>
   );
 }
