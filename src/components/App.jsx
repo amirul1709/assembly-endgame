@@ -7,7 +7,12 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   //initializing state for random word
-  const [curruntWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState("react");
+
+  //doing a count of wrong guesses
+  const wrongGuessCount = guessedLetters.filter(
+    (letter) => !currentWord.includes(letter)
+  ).length;
 
   //adding languages to the page
   const chips = languages.map((lang) => (
@@ -23,20 +28,20 @@ export default function App() {
   ));
 
   //creating an array of uppercase letters
-  const wordArray = curruntWord.toUpperCase().split("");
+  const wordArray = currentWord.split("");
 
   //displaying each letter in the word
   const letters = wordArray.map((letter, index) => {
     const isCorrect = guessedLetters.includes(letter);
 
-    return <span key={index}>{isCorrect ? letter : ""}</span>;
+    return <span key={index}>{isCorrect ? letter.toUpperCase() : ""}</span>;
   });
 
   //create a string of letters in the alphabet
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   //creating an array of uppercase letters
-  const alphabetArray = alphabet.toUpperCase().split("");
+  const alphabetArray = alphabet.split("");
 
   //guess state update user guesses
   function handleClick(button) {
@@ -62,7 +67,7 @@ export default function App() {
         onClick={() => handleClick(button)}
         className={className}
       >
-        {button}
+        {button.toUpperCase()}
       </button>
     );
   });
@@ -72,8 +77,8 @@ export default function App() {
       <header>
         <h1>Assembly: Endgame</h1>
         <p>
-          Guess the word within 8 attempts to keep the programming world safe
-          from Assembly!
+          Guess the word within {8 - wrongGuessCount} attempts to keep the
+          programming world safe from Assembly!
         </p>
       </header>
       <section className="status">
