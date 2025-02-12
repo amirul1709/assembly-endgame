@@ -27,8 +27,7 @@ export default function App() {
 
   //displaying each letter in the word
   const letters = wordArray.map((letter, index) => {
-    const isGuessed = guessedLetters.includes(letter);
-    const isCorrect = isGuessed && wordArray.includes(letter);
+    const isCorrect = guessedLetters.includes(letter);
 
     return <span key={index}>{isCorrect ? letter : ""}</span>;
   });
