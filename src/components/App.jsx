@@ -97,7 +97,7 @@ export default function App() {
   const statusClassName = clsx("status", {
     won: gameWon,
     lost: gameLost,
-    wrong: wrongGuessCount > 0 && isLastGuessWrong,
+    wrong: !isGameOver && isLastGuessWrong,
   });
 
   return (
@@ -122,7 +122,7 @@ export default function App() {
               <p>Better start learning assembly! 🥲</p>
             </>
           )
-        ) : wrongGuessCount > 0 && isLastGuessWrong ? (
+        ) : isLastGuessWrong ? (
           <p>{getFarewellText(languages[wrongGuessCount - 1].name)} 🫡</p>
         ) : null}
       </section>

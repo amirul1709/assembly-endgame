@@ -38,7 +38,7 @@ header>p {
 }
 
 .status.wrong {
-  background-color: purple;
+  background-color: #7A5EA7;
   display: flex;
   align-items: center;
   justify-content: center;
