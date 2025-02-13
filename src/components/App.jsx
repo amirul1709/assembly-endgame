@@ -12,9 +12,9 @@ export default function App() {
   const [currentWord, setCurrentWord] = useState("react");
 
   //checking if the last guessed letter is wrong
-  const isLastGuessWrong = !currentWord.includes(
-    guessedLetters[guessedLetters.length - 1]
-  );
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessWrong =
+    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
 
   //doing a count of wrong guesses
   const wrongGuessCount = guessedLetters.filter(
