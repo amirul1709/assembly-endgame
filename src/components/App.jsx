@@ -11,8 +11,8 @@ export default function App() {
   //initializing state for random word
   const [currentWord, setCurrentWord] = useState("react");
 
-  //checking if the last guessed letter is correct
-  const isCorrect = currentWord.includes(
+  //checking if the last guessed letter is wrong
+  const isLastGuessWrong = !currentWord.includes(
     guessedLetters[guessedLetters.length - 1]
   );
 
@@ -97,7 +97,7 @@ export default function App() {
   const statusClassName = clsx("status", {
     won: gameWon,
     lost: gameLost,
-    wrong: wrongGuessCount > 0 && !isCorrect,
+    wrong: wrongGuessCount > 0 && isLastGuessWrong,
   });
 
   return (
@@ -122,7 +122,7 @@ export default function App() {
               <p>Better start learning assembly! 🥲</p>
             </>
           )
-        ) : wrongGuessCount > 0 && !isCorrect ? (
+        ) : wrongGuessCount > 0 && isLastGuessWrong ? (
           <p>{getFarewellText(languages[wrongGuessCount - 1].name)} 🫡</p>
         ) : null}
       </section>
