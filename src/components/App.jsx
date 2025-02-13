@@ -53,7 +53,7 @@ export default function App() {
   });
 
   //create a string of letters in the alphabet
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const alphabet = "qwertyuiopasdfghjklzxcvbnm";
 
   //creating an array of uppercase letters
   const alphabetArray = alphabet.split("");
