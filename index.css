@@ -22,11 +22,19 @@ header>p {
 }
 
 .status {
-  background-color: green;
   border-radius: 4px;
   padding: 10px 10px;
   text-align: center;
   margin: 30px;
+  height: 70px;
+}
+
+.status.won {
+  background-color: green;
+}
+
+.status.lost {
+  background-color: red;
 }
 
 .status>h3 {
@@ -34,6 +42,22 @@ header>p {
 }
 
 .status>p {
+  margin: 0px;
+}
+
+.status.won>h3 {
+  margin: 0px;
+}
+
+.status.won>p {
+  margin: 0px;
+}
+
+.status.lost>h3 {
+  margin: 0px;
+}
+
+.status.lost>p {
   margin: 0px;
 }
 

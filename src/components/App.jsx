@@ -16,9 +16,12 @@ export default function App() {
   ).length;
 
   //checking if game is over
-  const isGameOver =
-    currentWord.split("").every((letter) => guessedLetters.includes(letter)) ||
-    wrongGuessCount >= languages.length - 1;
+  const gameWon = currentWord
+    .split("")
+    .every((letter) => guessedLetters.includes(letter));
+  const gameLost = wrongGuessCount >= languages.length - 1;
+
+  const isGameOver = gameWon || gameLost;
 
   //adding languages to the page
   const chips = languages.map((lang, index) => {
@@ -84,6 +87,12 @@ export default function App() {
     );
   });
 
+  //setting class names for the status section
+  const statusClassName = clsx("status", {
+    won: gameWon,
+    lost: gameLost,
+  });
+
   return (
     <main>
       <header>
@@ -93,18 +102,27 @@ export default function App() {
           programming world safe from Assembly!
         </p>
       </header>
-      <section className="status">
-        <h3>You win!</h3>
-        <p>Well done! 🎉</p>
+      <section className={statusClassName}>
+        {isGameOver ? (
+          gameWon ? (
+            <>
+              <h3>You win!</h3>
+              <p>Well done! 🎉</p>
+            </>
+          ) : (
+            <>
+              <h3>You lose!</h3>
+              <p>Better start learning assembly! 🥲</p>
+            </>
+          )
+        ) : null}
       </section>
       <section className="lang-container">{chips}</section>
       <section className="word-container">{letters}</section>
       <section className="keyboard-container">{keys}</section>
-      {isGameOver ? (
-        <section className="ng-button-container">
-          <button>New Game</button>
-        </section>
-      ) : null}
+      <section className="ng-button-container">
+        {isGameOver ? <button>New Game</button> : null}
+      </section>
     </main>
   );
 }
