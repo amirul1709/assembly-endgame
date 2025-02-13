@@ -145,6 +145,11 @@ header>p {
   cursor: pointer;
 }
 
+.keyboard-container>button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .keyboard-container>.correct {
   height: 35px;
   width: 35px;
