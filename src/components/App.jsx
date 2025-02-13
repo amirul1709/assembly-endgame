@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { languages } from "../languages";
 import clsx from "clsx";
+import { getFarewellText } from "../utils";
 import { generate } from "random-words";
 
 export default function App() {
@@ -9,6 +10,11 @@ export default function App() {
 
   //initializing state for random word
   const [currentWord, setCurrentWord] = useState("react");
+
+  //checking if the last guessed letter is correct
+  const isCorrect = currentWord.includes(
+    guessedLetters[guessedLetters.length - 1]
+  );
 
   //doing a count of wrong guesses
   const wrongGuessCount = guessedLetters.filter(
@@ -91,6 +97,7 @@ export default function App() {
   const statusClassName = clsx("status", {
     won: gameWon,
     lost: gameLost,
+    wrong: wrongGuessCount > 0 && !isCorrect,
   });
 
   return (
@@ -115,6 +122,8 @@ export default function App() {
               <p>Better start learning assembly! 🥲</p>
             </>
           )
+        ) : wrongGuessCount > 0 && !isCorrect ? (
+          <p>{getFarewellText(languages[wrongGuessCount - 1].name)} 🫡</p>
         ) : null}
       </section>
       <section className="lang-container">{chips}</section>

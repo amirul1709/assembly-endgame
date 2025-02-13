@@ -37,6 +37,13 @@ header>p {
   background-color: red;
 }
 
+.status.wrong {
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .status>h3 {
   margin: 0px;
 }
@@ -58,6 +65,14 @@ header>p {
 }
 
 .status.lost>p {
+  margin: 0px;
+}
+
+.status.wrong>h3 {
+  margin: 0px;
+}
+
+.status.wrong>p {
   margin: 0px;
 }
 
