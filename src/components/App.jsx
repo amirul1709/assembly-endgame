@@ -87,6 +87,7 @@ export default function App() {
         key={button}
         onClick={() => handleClick(button)}
         className={className}
+        disabled={isGameOver}
       >
         {button.toUpperCase()}
       </button>
