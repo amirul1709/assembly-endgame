@@ -10,7 +10,7 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   //initializing state for random word
-  const [currentWord, setCurrentWord] = useState(() => generate());
+  const [currentWord, setCurrentWord] = useState("react");
 
   //checking if the last guessed letter is wrong
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
@@ -56,7 +56,11 @@ export default function App() {
   const letters = wordArray.map((letter, index) => {
     const isCorrect = guessedLetters.includes(letter);
 
-    return <span key={index}>{isCorrect ? letter.toUpperCase() : ""}</span>;
+    return isGameOver && gameLost ? (
+      <span key={index}>{letter}</span>
+    ) : (
+      <span key={index}>{isCorrect ? letter.toUpperCase() : ""}</span>
+    );
   });
 
   //create a string of letters in the alphabet
