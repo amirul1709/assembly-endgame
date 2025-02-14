@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { getFarewellText } from "../utils";
 import { generate } from "random-words";
 import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 export default function App() {
   //initializing state for user's guessed letters
@@ -121,8 +122,11 @@ export default function App() {
     setGuessedLetters([]);
   }
 
+  const { width, height } = useWindowSize();
+
   return (
     <main>
+      {gameWon ? <Confetti width={width} height={height} /> : null}
       <header>
         <h1>Assembly: Endgame</h1>
         <p>
