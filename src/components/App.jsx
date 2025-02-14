@@ -117,11 +117,13 @@ export default function App() {
     wrong: !isGameOver && isLastGuessWrong,
   });
 
+  //starting a new game
   function handleNewGameClick() {
     setCurrentWord(generate());
     setGuessedLetters([]);
   }
 
+  //window size for confetti
   const { width, height } = useWindowSize();
 
   return (
