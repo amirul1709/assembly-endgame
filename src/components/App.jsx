@@ -9,7 +9,7 @@ export default function App() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   //initializing state for random word
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(generate);
 
   //checking if the last guessed letter is wrong
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
@@ -64,13 +64,6 @@ export default function App() {
   //creating an array of uppercase letters
   const alphabetArray = alphabet.split("");
 
-  //guess state update user guesses
-  function handleClick(button) {
-    setGuessedLetters((prevGuess) =>
-      prevGuess.includes(button) ? prevGuess : [...prevGuess, button]
-    );
-  }
-
   //displaying each key for our keyboard
   const keys = alphabetArray.map((button) => {
     const isGuessed = guessedLetters.includes(button);
@@ -81,6 +74,13 @@ export default function App() {
       correct: isCorrect,
       wrong: isWrong,
     });
+
+    //guess state update user guesses
+    function handleClick(button) {
+      setGuessedLetters((prevGuess) =>
+        prevGuess.includes(button) ? prevGuess : [...prevGuess, button]
+      );
+    }
 
     return (
       <button
