@@ -3,13 +3,14 @@ import { languages } from "../languages";
 import clsx from "clsx";
 import { getFarewellText } from "../utils";
 import { generate } from "random-words";
+import Confetti from "react-confetti";
 
 export default function App() {
   //initializing state for user's guessed letters
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   //initializing state for random word
-  const [currentWord, setCurrentWord] = useState(generate);
+  const [currentWord, setCurrentWord] = useState(() => generate());
 
   //checking if the last guessed letter is wrong
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
@@ -21,7 +22,7 @@ export default function App() {
     (letter) => !currentWord.includes(letter)
   ).length;
 
-  //checking if game is over
+  //checking if the game is won
   const gameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
@@ -65,10 +66,10 @@ export default function App() {
   const alphabetArray = alphabet.split("");
 
   //displaying each key for our keyboard
-  const keys = alphabetArray.map((button) => {
-    const isGuessed = guessedLetters.includes(button);
-    const isCorrect = isGuessed && wordArray.includes(button);
-    const isWrong = isGuessed && !wordArray.includes(button);
+  const keys = alphabetArray.map((letter) => {
+    const isGuessed = guessedLetters.includes(letter);
+    const isCorrect = isGuessed && wordArray.includes(letter);
+    const isWrong = isGuessed && !wordArray.includes(letter);
 
     const className = clsx({
       correct: isCorrect,
@@ -76,20 +77,20 @@ export default function App() {
     });
 
     //guess state update user guesses
-    function handleClick(button) {
+    function handleKeyClick(letter) {
       setGuessedLetters((prevGuess) =>
-        prevGuess.includes(button) ? prevGuess : [...prevGuess, button]
+        prevGuess.includes(letter) ? prevGuess : [...prevGuess, letter]
       );
     }
 
     return (
       <button
-        key={button}
-        onClick={() => handleClick(button)}
+        key={letter}
+        onClick={() => handleKeyClick(letter)}
         className={className}
         disabled={isGameOver}
       >
-        {button.toUpperCase()}
+        {letter.toUpperCase()}
       </button>
     );
   });
@@ -100,6 +101,11 @@ export default function App() {
     lost: gameLost,
     wrong: !isGameOver && isLastGuessWrong,
   });
+
+  function handleNewGameClick() {
+    setCurrentWord(generate());
+    setGuessedLetters([]);
+  }
 
   return (
     <main>
@@ -131,7 +137,9 @@ export default function App() {
       <section className="word-container">{letters}</section>
       <section className="keyboard-container">{keys}</section>
       <section className="ng-button-container">
-        {isGameOver ? <button>New Game</button> : null}
+        {isGameOver ? (
+          <button onClick={handleNewGameClick}>New Game</button>
+        ) : null}
       </section>
     </main>
   );
