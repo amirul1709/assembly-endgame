@@ -113,7 +113,7 @@ header>p {
   gap: 4px;
 }
 
-.word-container>span {
+.word-container>.letter-chip {
   height: 40px;
   width: 35px;
   font-size: 1.2rem;
@@ -123,6 +123,10 @@ header>p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.word-container>.letter-chip.reveal {
+  color: red;
 }
 
 .keyboard-container {
